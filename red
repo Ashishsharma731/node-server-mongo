@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost:27017/mydatabase")
+mongoose.connect("mongodb://localhost:27017/mydatabase") //here "mydatabase" is the name of the database
 .then(()=>console.log("Connected to DB"))
 .catch(err => console.error("MongoDB connection error :",err));
 
@@ -15,7 +15,7 @@ const contractSchema = new mongoose.Schema({
     password:{type:String, required:true}
 })
 
-const User = mongoose.model('users',contractSchema);
+const User = mongoose.model('users',contractSchema); //"users" is the name of table
 
 app.post('/api/user', async function (req,res){
     const contact = new User({

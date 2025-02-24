@@ -14,8 +14,11 @@ connectMongoosDb("mongodb://localhost:27017/mydatabase").then(()=>
 console.log("Mongoos connected to database")
 );
 
+//middleware 
 app.use(logReqRes("log.txt"));
 
+
+//Routes
 app.use("/api", userRouter);
 
 
