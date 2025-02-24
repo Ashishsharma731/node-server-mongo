@@ -15,7 +15,8 @@ console.log("Mongoos connected to database")
 );
 
 app.use(logReqRes("log.txt"));
-app.get("/api",userRouter);
+
+app.use("/api", userRouter);
 
 
 app.listen(3000);
