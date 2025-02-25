@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const {handleRoute,handleCreateUser} = require('../controllers/userController')
+const {verifyToken} = require('../middlewares');
+const {handleRoute,handleLoginUser,handleEventHandler} = require('../controllers/userController')
 
 router.get("/", handleRoute);
-router.post("/user", handleCreateUser);
+router.post("/user/login", handleLoginUser);
+router.get("/getUserBy/:_id",verifyToken,handleEventHandler);
 
 module.exports = router;
