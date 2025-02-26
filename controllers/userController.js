@@ -30,6 +30,47 @@ async function handleLoginUser(req,res){
         res.status(500).json({message:"Error creating user",error:error.message});
     }
 }
+// async function handleUpdateUser(req, res) {
+//     try {
+//         console.log("HERE WERA RWE");
+        
+//         const { email, newPassword } = req.body;
+
+//         const user = await User.findOne({ email });
+//         if (!user) {
+//             return res.status(404).json({ message: "User not found" });
+//         }
+
+//         const salt = await bcrypt.genSalt(10);
+//         const hashPassword = await bcrypt.hash(newPassword, salt);
+//         user.email = email;
+//         // user.password = hashPassword;
+//         console.log(user.email,"TESTING");
+        
+//         await user.save();
+
+//         res.status(200).json({ message: "User updated successfully" });
+//     } catch (error) {
+//         res.status(500).json({ message: "Error updating user", error: error.message });
+//     }
+// }
+
+// Delete User
+async function handleDeleteUser(req, res) {
+    try {
+        console.log("HERE WERA RWE");
+        const { email } = req.body;
+
+        const user = await User.findOneAndDelete({ email });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.status(200).json({ message: "User deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Error deleting user", error: error.message });
+    }
+}
 
 async function handleEventHandler(req,res){
     try {
@@ -46,4 +87,6 @@ module.exports ={
     handleLoginUser,
     handleRoute,
     handleEventHandler,
+    handleUpdateUser,
+    handleDeleteUser
 }
